@@ -5,7 +5,7 @@ const tests = require('interface-ipfs-core')
 const CommonFactory = require('../utils/interface-common-factory')
 const isNode = require('detect-node')
 
-describe('interface-ipfs-core tests', () => {
+describe.only('interface-ipfs-core tests', () => {
   const defaultCommonFactory = CommonFactory.create()
 
   tests.bitswap(defaultCommonFactory, { skip: !isNode })
@@ -65,6 +65,14 @@ describe('interface-ipfs-core tests', () => {
       }
     ]
   })
+
+  /* TODO uncomment once interface-ipfs-core PR get merged
+  tests.name(CommonFactory.create({
+    spawnOptions: {
+      args: ['--pass ipfs-is-awesome-software'],
+      initOptions: { bits: 512 }
+    }
+  })) */
 
   tests.object(defaultCommonFactory)
 
